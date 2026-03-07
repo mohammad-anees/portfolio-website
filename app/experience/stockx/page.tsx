@@ -47,7 +47,10 @@ const stockxAchievementsData: ExperienceDataProps[] = [
     }
 ]
 
-const stockxTechnologies: string[] = ['NodeJs', 'Kafka', 'AWS', 'Postgres', 'Redis', 'Apache Flink', 'Spring Boot', 'Kotlin', 'Php', 'Go']
+const stockxTechnologies: string[] = [
+    'Typescript/Javascript', 'NodeJs', 'Kafka', 'AWS', 'SQL', 'Redis',
+    'Apache Flink', 'Kubernetes', 'Spring Boot', 'Kotlin', 'Php', 'Go'
+]
 
 
 const StockXExperience = () => {
@@ -83,7 +86,7 @@ const StockXExperience = () => {
                     <div>
                         <h1 className="text-xl font-bold mb-1.5">Technologies</h1>
                         <div className="space-x-2 space-y-1">
-                            {stockxTechnologies.map((tech, index) => <Badge className="bg-blue-950 text-blue-300" key={index}>{tech}</Badge>)}
+                            {stockxTechnologies.map((tech, index) => <Badge variant="darkblue" key={index}>{tech}</Badge>)}
                         </div>
                     </div>
                 </CardContent>

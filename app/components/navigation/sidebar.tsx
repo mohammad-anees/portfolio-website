@@ -11,7 +11,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { Pyramid } from "lucide-react"
+import { Boxes } from "lucide-react"
 import { navigation } from "./navigation.data"
 import { usePathname } from "next/navigation"
 
@@ -26,7 +26,7 @@ export function AppSidebar() {
                 <SidebarMenu>
                     <SidebarMenuItem>
                         <div className="flex gap-2 px-2">
-                            <Pyramid />
+                            <Boxes />
                             <h1 className="text-md font-bold uppercase">Mohammad Anees</h1>
                         </div>
                     </SidebarMenuItem>

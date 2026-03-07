@@ -9,7 +9,7 @@ import {
     MenubarMenu,
     MenubarTrigger,
 } from "@/components/ui/menubar"
-import { Pyramid } from "lucide-react"
+import { Boxes } from "lucide-react"
 import { navigation } from './navigation.data'
 import Link from "next/link"
 import { usePathname } from "next/navigation";
@@ -22,7 +22,7 @@ export const NavBar = () => {
     return (
         <Menubar className="w-full rounded-none">
             <MenubarLabel className="flex gap-2">
-                <Pyramid size={18} />
+                <Boxes size={18} />
                 <h1 className="font-bold uppercase">
                     Mohammad Anees
                 </h1>

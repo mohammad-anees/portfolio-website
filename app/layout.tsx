@@ -24,7 +24,9 @@ export default function RootLayout({
           <AppSidebar />
           <main className="flex flex-col w-full">
             <div className="md:hidden"><NavBar /></div>
-            <TooltipProvider>{children}</TooltipProvider>
+            <TooltipProvider>
+              {children}
+            </TooltipProvider>
           </main>
         </SidebarProvider>
       </body>

@@ -25,7 +25,7 @@ const stockxAchievementsData: ExperienceDataProps[] = [
             <>Reduced an <b>8+ hour</b> market recalculation process to 2 hours, while simultaneously <b>removing the 15% and 20%</b> increase in sell/buy now failures during that time.</>,
             <>
                 Necessary for the launch of <Link className="text-blue-400" href="https://stockx.com/lp/xpress-ship/">StockX Express Shipping</Link> Initiative,
-                successfully scaled for the <Link className="text-blue-400" href="https://stockx.com/news/introducing-the-stockx-verified-seller-program/">Verified Seller Program</Link> which now account for <b>50% of all StockX orders</b>.
+                successfully scaled for the <Link className="text-blue-400" href="https://stockx.com/news/introducing-the-stockx-verified-seller-program/">Verified Seller Program</Link> which combined account for <b>50% of all StockX orders</b>.
             </>
         ]
     },
@@ -55,7 +55,7 @@ const stockxTechnologies: string[] = [
 
 const StockXExperience = () => {
     return (
-        <div className="mt-2 self-center w-md md:w-full max-w-2xl">
+        <div className="py-6 self-center w-md md:w-full max-w-2xl">
             <Card>
                 <CardHeader>
                     <CardTitle>
@@ -92,8 +92,17 @@ const StockXExperience = () => {
                     </div>
                 </CardContent>
                 <CardFooter className="justify-end">
-                    <Button variant="ghost" size="sm">Get More Details</Button>
-                    <Button variant="outline" size="sm">View Full Resume <ExternalLink /></Button>
+                    <Link href="/experience/query">
+                        <Button variant="ghost" size="sm">
+                            Get More Details
+                        </Button>
+                    </Link>
+                    <Link href="/" target="_blank">
+                        <Button variant="outline" size="sm">
+                            View Full Resume
+                            <ExternalLink />
+                        </Button>
+                    </Link>
                 </CardFooter>
             </Card>
         </div >

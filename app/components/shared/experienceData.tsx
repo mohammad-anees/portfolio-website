@@ -5,7 +5,7 @@ type BulletedDetail = string | ReactNode
 
 export interface ExperienceDataProps {
     title: string,
-    summary: string,
+    summary: string | ReactNode,
     bulletedDetails?: BulletedDetail[]
 }
 

@@ -18,7 +18,7 @@ export const navigation: Navigation[] = [
         links: [
             { name: 'Ask AI Assistant', url: '/experience/query', icon: <BotMessageSquare /> },
             { name: 'StockX', url: '/experience/stockx', icon: <X /> },
-            { name: 'RigUp', url: '/experience/rig-up', icon: <Fuel /> },
+            { name: 'RigUp', url: '/experience/rigup', icon: <Fuel /> },
             { name: 'General Motors', url: '/experience/gm', icon: <Car /> },
         ]
     },

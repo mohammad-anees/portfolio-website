@@ -31,5 +31,5 @@ export const POST = async (req: Request) => {
         }]
     });
 
-    return Response.json({ query, response: response.output_text, fullResponse: response })
+    return Response.json({ query, response: response.output_text })
 }

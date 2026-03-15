@@ -5,6 +5,7 @@ import {
     CardDescription,
     CardHeader,
 } from "@/components/ui/card"
+import { Skeleton } from "@/components/ui/skeleton"
 import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from "@/components/ui/input-group";
 import { BotMessageSquare, Loader } from "lucide-react";
 import { useState } from "react";
@@ -52,28 +53,37 @@ const Query = () => {
                 <div className="flex flex-col h-full justify-end">
                     {conversation.map((convo, index) => (
                         <div className="py-2" key={index}>
-                            <h1 className="font-bold uppercase text-xs">{convo.query}</h1>
-                            <p className="text-lg">{convo.loading ? '...' : convo.response}</p>
+                            <h1 className="font-bold uppercase text-xs text-gray-400">{convo.query}</h1>
+                            {convo.loading ?
+                                <>
+                                    <Skeleton className="h-4 mt-2" />
+                                    <Skeleton className="h-4 mt-2" />
+                                    <Skeleton className="h-4 mt-2 w-3/4" />
+                                </> :
+                                <p>{convo.response}</p>
+                            }
                         </div>
                     ))}
                 </div>
             </div>
             <div className="pb-10 self-center w-md md:w-full max-w-2xl">
-                <Card className="rounded">
+                <Card>
                     <CardHeader>
                         <CardDescription>Ask an AI agent about my professional experience.</CardDescription>
-                        <InputGroup className="rounded font-bold">
-                            <InputGroupInput placeholder="..." value={query} onChange={(e) => setQuery(e.target.value)} />
-                            <InputGroupAddon align="inline-end">
-                                <InputGroupButton
-                                    variant="secondary"
-                                    onClick={onSubmitHandler}
-                                    disabled={loading}
-                                >
-                                    {loading ? <Loader className="animate-spin" /> : (<><BotMessageSquare /> Query</>)}
-                                </InputGroupButton>
-                            </InputGroupAddon>
-                        </InputGroup>
+                        <form onSubmit={(e) => { e.preventDefault(); onSubmitHandler() }}>
+                            <InputGroup className="rounded font-bold">
+                                <InputGroupInput placeholder="..." value={query} onChange={(e) => setQuery(e.target.value)} />
+                                <InputGroupAddon align="inline-end">
+                                    <InputGroupButton
+                                        type="submit"
+                                        variant="secondary"
+                                        disabled={loading}
+                                    >
+                                        {loading ? <Loader className="animate-spin" /> : (<><BotMessageSquare /> Query</>)}
+                                    </InputGroupButton>
+                                </InputGroupAddon>
+                            </InputGroup>
+                        </form>
                     </CardHeader>
                 </Card>
             </div>

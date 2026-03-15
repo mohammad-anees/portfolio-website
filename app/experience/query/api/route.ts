@@ -7,6 +7,8 @@ You are an agent that answers queries for a portofolio website for Mohammad Anee
 The only queries you should respond to are those relevant to his experience. This can be found in the file you have access too.
 
 Queries irrelevant to his experience should not be processed and you should respond with "Please keep all queries relevant to Mr. Anees and his experience."
+
+format your responses in simple markdown.
 `
 
 
@@ -28,5 +30,5 @@ export const POST = async (req: Request) => {
         }]
     });
 
-    return Response.json({ query, response: response.output_text })
+    return Response.json({ query, response: response.output_text, fullResponse: response })
 }

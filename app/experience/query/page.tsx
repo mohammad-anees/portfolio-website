@@ -5,75 +5,63 @@ import {
     CardDescription,
     CardHeader,
 } from "@/components/ui/card"
-import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from "@/components/ui/input-group";
-import { BotMessageSquare, Loader } from "lucide-react";
+import { Button } from "@/components/ui/button"
+import { ButtonGroup } from "@/components/ui/button-group"
+import { Input } from "@/components/ui/input"
+import { Loader, SendHorizonal } from "lucide-react";
 import { useState } from "react";
+import { ConversationHistory, ConversationItem } from "./conversationHistory";
 
 const Query = () => {
     const [query, setQuery] = useState('')
     const [loading, setLoading] = useState(false)
-    const [conversation, setConversation] = useState<
-        {
-            query: string,
-            response: string,
-            loading: boolean
-        }[]>([])
+    const [conversation, setConversation] = useState<ConversationItem[]>([])
 
-    const onSubmitHandler = () => {
+    const onSubmitHandler = async () => {
+        const currentQuery = query
+        const conversationItem = { query: currentQuery, response: '', loading: true, error: false }
         setLoading(true)
-        setConversation([...conversation, { query, response: '', loading: true }])
-        handleQuerySubmission()
         setQuery('')
-    }
+        setConversation(prev => [...prev, conversationItem])
 
-    const handleQuerySubmission = async () => {
-        setLoading(true)
         try {
             const res = await fetch('/experience/query/api', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ query })
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query: currentQuery })
             })
             const data: { query: string, response: string } = await res.json()
-            setConversation([...conversation, { query: data.query, response: data.response, loading: false }])
-            console.log(data)
+            console.log(data);
+            conversationItem.response = data.response
         } catch (e) {
-            setConversation([...conversation, { query, response: 'Error', loading: false }])
+            conversationItem.response = 'Error'
+        } finally {
+            setLoading(false)
+            conversationItem.loading = false
+            conversationItem.error = true
+            setConversation(prev => [...prev.slice(0, -1), conversationItem])
         }
-
-        setLoading(false)
     }
 
     return (
         <>
-            <div className="pb-5 flex-1 self-center w-md md:w-full max-w-2xl ">
-                <div className="flex flex-col h-full justify-end">
-                    {conversation.map((convo, index) => (
-                        <div className="py-2" key={index}>
-                            <h1 className="font-bold uppercase text-xs">{convo.query}</h1>
-                            <p className="text-lg">{convo.loading ? '...' : convo.response}</p>
-                        </div>
-                    ))}
-                </div>
-            </div>
-            <div className="pb-10 self-center w-md md:w-full max-w-2xl">
-                <Card className="rounded">
+            <ConversationHistory conversationHistory={conversation} />
+            <div className="pb-10 px-2 self-center w-xs md:w-full max-w-2xl">
+                <Card>
                     <CardHeader>
                         <CardDescription>Ask an AI agent about my professional experience.</CardDescription>
-                        <InputGroup className="rounded font-bold">
-                            <InputGroupInput placeholder="..." value={query} onChange={(e) => setQuery(e.target.value)} />
-                            <InputGroupAddon align="inline-end">
-                                <InputGroupButton
-                                    variant="secondary"
-                                    onClick={onSubmitHandler}
-                                    disabled={loading}
+                        <form onSubmit={(e) => { e.preventDefault(); onSubmitHandler() }}>
+                            <ButtonGroup className="w-full">
+                                <Input placeholder="" value={query} onChange={(e) => setQuery(e.target.value)} />
+                                <Button
+                                    type="submit"
+                                    variant="default"
+                                    disabled={loading || query.length === 0}
                                 >
-                                    {loading ? <Loader className="animate-spin" /> : (<><BotMessageSquare /> Query</>)}
-                                </InputGroupButton>
-                            </InputGroupAddon>
-                        </InputGroup>
+                                    {loading ? <Loader className="animate-spin" /> : <SendHorizonal />}
+                                </Button>
+                            </ButtonGroup>
+                        </form>
                     </CardHeader>
                 </Card>
             </div>

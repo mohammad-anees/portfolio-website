@@ -1,17 +1,17 @@
 import OpenAI from "openai";
 
 const VECTOR_STORE = process.env.RESUME_VECTOR_STORE_KEY
+const INVALID_QUERY_RESPONSE = 'Please keep all queries relevant to Mr. Anees and his experience.'
 const QUERY_INSTRUCTIONS = `
 You are an agent that answers queries for a portofolio website for Mohammad Anees.
 
 The only queries you should respond to are those relevant to his experience. This can be found in the file you have access too.
 Queries related to his experience such as more details on companies in the document, technologies outlined etc can be responded to.
 
-Queries irrelevant to his experience should not be processed and you should respond with "Please keep all queries relevant to Mr. Anees and his experience."
+Queries irrelevant to his experience should not be processed and you should respond with "${INVALID_QUERY_RESPONSE}".
 
 format your responses in simple markdown.
 `
-
 
 export const POST = async (req: Request) => {
     const { query } = await req.json()
@@ -31,5 +31,6 @@ export const POST = async (req: Request) => {
         }]
     });
 
-    return Response.json({ query, response: response.output_text })
+    const invalidQuery = response.output_text === INVALID_QUERY_RESPONSE
+    return Response.json({ query, response: response.output_text, invalidQuery })
 }

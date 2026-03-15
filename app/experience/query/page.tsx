@@ -10,7 +10,7 @@ import { ButtonGroup } from "@/components/ui/button-group"
 import { Input } from "@/components/ui/input"
 import { Loader, SendHorizonal } from "lucide-react";
 import { useState } from "react";
-import { ConversationHistory, ConversationItem } from "./conversationHistory";
+import { ConversationHistory, ConversationItem, ConversationItemState } from "./conversationHistory";
 
 const Query = () => {
     const [query, setQuery] = useState('')
@@ -19,7 +19,7 @@ const Query = () => {
 
     const onSubmitHandler = async () => {
         const currentQuery = query
-        const conversationItem = { query: currentQuery, response: '', loading: true, error: false }
+        const conversationItem = { query: currentQuery, response: '', state: ConversationItemState.LOADING }
         setLoading(true)
         setQuery('')
         setConversation(prev => [...prev, conversationItem])
@@ -30,15 +30,18 @@ const Query = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ query: currentQuery })
             })
-            const data: { query: string, response: string } = await res.json()
+            const data: { query: string, response: string, invalidQuery: boolean } = await res.json()
             console.log(data);
+
             conversationItem.response = data.response
+            conversationItem.state = data.invalidQuery ?
+                ConversationItemState.WARNING :
+                ConversationItemState.SUCCESS
+
         } catch (e) {
-            conversationItem.response = 'Error'
+            conversationItem.state = ConversationItemState.ERROR
         } finally {
             setLoading(false)
-            conversationItem.loading = false
-            conversationItem.error = true
             setConversation(prev => [...prev.slice(0, -1), conversationItem])
         }
     }

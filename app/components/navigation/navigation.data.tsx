@@ -16,7 +16,7 @@ export const navigation: Navigation[] = [
     {
         sectionTitle: "Experience",
         links: [
-            { name: 'Ask AI Assistant', url: '/experience/query', icon: <BotMessageSquare /> },
+            { name: 'Ask AI', url: '/experience/query', icon: <BotMessageSquare /> },
             { name: 'StockX', url: '/experience/stockx', icon: <X /> },
             { name: 'RigUp', url: '/experience/rigup', icon: <Fuel /> },
             { name: 'General Motors', url: '/experience/gm', icon: <Car /> },

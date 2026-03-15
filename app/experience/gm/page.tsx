@@ -32,7 +32,7 @@ const experiencePageDetails: ExperienceCardProps = {
     },
     tech: {
         technologies: gmTechnologies,
-        variant: 'secondary'
+        variant: 'default'
     }
 }
 

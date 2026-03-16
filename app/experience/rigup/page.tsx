@@ -45,7 +45,7 @@ const experiencePageDetails: ExperienceCardProps = {
 
 const RigUpExperience = () => {
     return (
-        <div className="py-6 self-center w-sm md:w-full max-w-2xl">
+        <div className="py-6 self-center px-1.5 w-full max-w-2xl">
             <ExperienceCard {...experiencePageDetails} />
         </div>
     )

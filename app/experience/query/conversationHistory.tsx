@@ -34,7 +34,7 @@ export const ConversationHistory = ({ conversationHistory }: { conversationHisto
     }
 
     return (
-        <div className="py-5 px-2 flex-1 self-center w-xs sm:w-full max-w-2xl">
+        <div className="p-4 md:px-2 flex-1 self-center w-full max-w-2xl">
             <div className="flex flex-col h-full justify-end space-y-4">
                 {conversationHistory.map((convo, index) => (
                     <div key={index}>

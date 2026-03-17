@@ -5,6 +5,15 @@ import {
     CardDescription,
     CardHeader,
 } from "@/components/ui/card"
+import {
+    Item,
+    ItemActions,
+    ItemContent,
+    ItemDescription,
+    ItemMedia,
+    ItemTitle,
+} from "@/components/ui/item"
+import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { ButtonGroup } from "@/components/ui/button-group"
 import { Input } from "@/components/ui/input"
@@ -57,7 +66,7 @@ const Query = () => {
             <div className="pb-2 md:pb-10 px-2 self-center w-full max-w-2xl">
                 <Card>
                     <CardHeader>
-                        <CardDescription>Ask an AI agent about my professional experience.</CardDescription>
+                        <CardDescription>Ask an LLM about my professional experience.</CardDescription>
                         <form onSubmit={(e) => { e.preventDefault(); onSubmitHandler() }}>
                             <ButtonGroup className="w-full">
                                 <Input placeholder="" value={query} onChange={(e) => setQuery(e.target.value)} />

@@ -4,33 +4,32 @@ import ExperienceCard, { ExperienceCardProps } from "@/app/components/shared/exp
 
 const stockxAchievementsData: ExperienceDataProps[] = [
     {
-        title: "Rebuilding the Marketplace Core",
-        summary: "The system at the heart of StockX — responsible for every order created on the platform — needed a full rebuild. I led it end-to-end: design, implementation, and a zero-downtime migration while the marketplace ran at full traffic.",
+        title: "Core Marketplace Architecture Rebuild",
+        summary: "Led the design, implementation, and zero-downtime migration of the core marketplace architecture responsible for all order creation on StockX.",
         bulletedDetails: [
-            "The new architecture is event-driven (Kafka), built on real-time data streaming (Flink), containerized microservices (Node/TypeScript on K8s), and AWS infrastructure.",
-            <>Migrated <b>10,000 req/s</b> of live traffic without a single incident, preserving a <b>15ms p99 latency SLA</b> throughout.</>,
-            <>Bids and asks now hit the market <b>80% faster</b> — the result of rethinking caching and rearchitecting how Kafka consumers processed events.</>,
-            <>A market recalculation that used to take <b>8+ hours</b> (and destabilize trading while it ran) now completes in 2 hours with no disruption to buyers or sellers.</>,
+            "Built on event-driven design (Kafka), data-streaming frameworks (Flink), containerized microservices (K8s/Node/Typescript), and AWS infrastructure.",
+            <>Migrated <b>10,000 req/s</b> of API traffic without incident while maintaining a <b>15ms p99 latency SLA</b>.</>,
+            <>Achieved an <b>80% reduction</b> in bid/ask time-to-market by optimizing caching strategy and Kafka consumer throughput.</>,
+            <>Reduced an <b>8+ hour</b> market recalculation process to <b>2 hours</b> while eliminating all trading disruptions and client instability during execution.</>,
             <>
-                The rebuild unlocked two major product launches: <Link className="text-blue-400" href="https://stockx.com/lp/xpress-ship/" target="_blank">StockX Express Shipping</Link> and
-                the <Link className="text-blue-400" href="https://stockx.com/news/introducing-the-stockx-verified-seller-program/" target="_blank">Verified Seller Program</Link> — which together now account for <b>50% of all orders</b> on the platform.
+                Enabled the launch of the <Link className="text-blue-400" href="https://stockx.com/lp/xpress-ship/" target="_blank">StockX Express Shipping Initiative</Link>, then successfully scaled to support the <Link className="text-blue-400" href="https://stockx.com/news/introducing-the-stockx-verified-seller-program/" target="_blank">Verified Seller program</Link>. Combined, these two initiatives account for <b>50% of all StockX orders</b> today.
             </>
         ]
     },
     {
-        title: "Rescuing Failed Orders",
-        summary: "When a seller cancels, fails to ship, or fails verification, StockX has a window to recover the sale automatically. The system doing that work had grown brittle — recovery rates swung wildly depending on market conditions, and there was no good visibility into why.",
+        title: "Intelligent Fulfillment",
+        summary: "Led the Intelligent Fulfillment initiative, decomposing the automated order reconciliation system to support more complex recovery rules, onboard new inventory sources, and improve operational visibility.",
         bulletedDetails: [
-            <>I rebuilt the reconciliation system from the ground up, introducing more sophisticated recovery logic and support for new inventory sources. Recovery stabilized at a consistent <b>60% rate</b> — recovering roughly <b>$100K per week</b> in revenue that would otherwise be lost.</>
+            <>Stabilized order recovery to a consistent <b>60% rate</b> for seller-cancelled, failed-to-ship, and failed verification seller items, recovering approximately <b>$100K per week</b> in net revenue. Replaced a previous process with a recovery rate that fluctuated heavily with market trends.</>
         ]
     },
     {
         title: "Dynamic Bid/Ask Matching",
-        summary: "StockX matching used to be rigid. I built a configurable matching system that let business teams define custom bid-to-ask ranges across different product attributes — no engineering changes required. The architecture built for this became the foundation for several larger platform initiatives that followed."
+        summary: "Designed and implemented a dynamic matching system enabling business teams to configure custom bid-to-ask matching ranges across a variety of product attributes. The underlying patterns and services became foundational to subsequent platform-wide initiatives."
     },
     {
-        title: "Fee Configuration Overhaul",
-        summary: <>Replaced a inflexible fee system with one that gave the business real configurability. The new system drove <b>$6.5M in Q4 2021</b> alone, with an estimated <b>$37.5M impact projected for 2022</b>.</>
+        title: "Fee Configuration System",
+        summary: <>Delivered an upgraded fee configuration system that generated <b>$6.5M in revenue in Q4 2021</b>, with an estimated <b>$37.5M impact for 2022</b>.</>
     },
 ]
 
@@ -41,7 +40,7 @@ const stockxTechnologies: string[] = [
 
 const stockxJob = {
     companyName: 'StockX',
-    title: 'Snr. Software Engineer',
+    title: 'Senior Software Engineer',
     start: new Date('11-1-2020'),
     website: 'https://stockx.com/',
 }
@@ -49,7 +48,7 @@ const stockxJob = {
 const experiencePageDetails: ExperienceCardProps = {
     job: stockxJob,
     experience: {
-        summary: 'Engineer on the Core Services Team, responsible for the state of the StockX global market, ensuring successful matches, and order creation and management.',
+        summary: 'Core Services engineer owning the systems that power the StockX global marketplace, including order matching, trade execution, and market state management. Lead projects end-to-end from discovery to delivery against company OKRs, mentor engineers on development best practices, and serve as an incident commander for production issues.',
         achievements: stockxAchievementsData
     },
     tech: {

@@ -54,7 +54,7 @@ const Query = () => {
     return (
         <>
             <ConversationHistory conversationHistory={conversation} />
-            <div className="pb-10 px-2 self-center w-full max-w-2xl">
+            <div className="pb-2 md:pb-10 px-2 self-center w-full max-w-2xl">
                 <Card>
                     <CardHeader>
                         <CardDescription>Ask an AI agent about my professional experience.</CardDescription>

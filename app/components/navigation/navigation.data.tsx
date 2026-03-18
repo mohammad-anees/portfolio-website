@@ -25,8 +25,8 @@ export const navigation: Navigation[] = [
     {
         sectionTitle: "Yusra Mags",
         links: [
+            { name: 'Year 1', url: '/yusra-mag/year-one', icon: <Baby /> },
             { name: 'Year 2', url: '/yusra-mag/year-two', icon: <Baby /> },
-            { name: 'Year 1', url: '/yusra-mag/year-one', icon: <Baby /> }
         ]
     }
 ]

@@ -38,7 +38,7 @@ const ExperienceCard = ({ job, experience, tech, }: ExperienceCardProps) => {
     const dateFormat: Intl.DateTimeFormatOptions = { month: 'short', year: 'numeric' }
     const startDate = job.start.toLocaleDateString('en-US', dateFormat)
     const endDate = job.end?.toLocaleDateString('en-US', dateFormat) ?? 'Present'
-    const experiencePath = experience.experienceQuery ? `/experience/query?query=${experience.experienceQuery}` : '/experience/query'
+    const experiencePath = experience.experienceQuery ? `/experience/query?query=${encodeURIComponent(experience.experienceQuery)}` : '/experience/query'
 
     return (
         <Card>

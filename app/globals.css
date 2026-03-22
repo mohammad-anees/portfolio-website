@@ -101,6 +101,7 @@ button:hover, a:hover {
   @apply p-px bg-gradient-to-r from-blue-500 via-purple-500 via-pink-500 to-green-500;
 }
 
+
 html {
   min-height: 100%;
   background: radial-gradient(
@@ -114,6 +115,6 @@ html {
 
 body {
   min-height: 100vh;
-  /* animation: gradientShift 30s ease infinite; */
+  background: transparent;
 }
 

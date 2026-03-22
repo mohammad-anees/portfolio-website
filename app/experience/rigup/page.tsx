@@ -35,7 +35,8 @@ const experiencePageDetails: ExperienceCardProps = {
     job: rigupJob,
     experience: {
         summary: 'Full Stack Engineer delivering features across web and mobile spanning work contracting, onboarding, time tracking, invoice submission, and data visualizations. Supported front-end clients through a Ruby on Rails monolith and Node.js microservices.',
-        achievements: rigupAchievementsData
+        achievements: rigupAchievementsData,
+        experienceQuery: 'short summary of rigup experience'
     },
     tech: {
         technologies: rigupTechnologies,

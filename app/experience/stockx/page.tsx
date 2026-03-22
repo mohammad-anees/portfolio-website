@@ -49,12 +49,13 @@ const experiencePageDetails: ExperienceCardProps = {
     job: stockxJob,
     experience: {
         summary: 'Core Services engineer owning the systems that power the StockX global marketplace, including order matching, trade execution, and market state management. Lead projects end-to-end from discovery to delivery against company OKRs, mentor engineers on development best practices, and serve as an incident commander for production issues.',
-        achievements: stockxAchievementsData
+        achievements: stockxAchievementsData,
+        experienceQuery: 'short summary of stockx experience'
     },
     tech: {
         technologies: stockxTechnologies,
         variant: 'darkgreen'
-    }
+    },
 }
 
 const StockXExperience = () => {

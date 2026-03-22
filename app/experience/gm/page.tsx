@@ -28,7 +28,8 @@ const experiencePageDetails: ExperienceCardProps = {
     job: gmJob,
     experience: {
         summary: 'Software Engineer in the Manufacturing Quality department, developing software solutions to improve vehicle quality across GM plants. Primarily worked on front-end systems using Angular, TypeScript, JavaScript, HTML, and CSS/LESS, with some .NET and .NET Core.',
-        achievements: gmAchievementsData
+        achievements: gmAchievementsData,
+        experienceQuery: 'short summary of gm experience'
     },
     tech: {
         technologies: gmTechnologies,

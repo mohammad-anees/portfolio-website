@@ -26,17 +26,19 @@ export interface ExperienceCardProps {
     experience: {
         summary: string | ReactNode,
         achievements: ExperienceDataProps[],
+        experienceQuery?: string
     },
     tech: {
         technologies: string[],
         variant: "link" | "default" | "secondary" | "destructive" | "outline" | "ghost" | "darkblue" | "darkgreen" | null | undefined
-    }
+    },
 }
 
-const ExperienceCard = ({ job, experience, tech }: ExperienceCardProps) => {
+const ExperienceCard = ({ job, experience, tech, }: ExperienceCardProps) => {
     const dateFormat: Intl.DateTimeFormatOptions = { month: 'short', year: 'numeric' }
     const startDate = job.start.toLocaleDateString('en-US', dateFormat)
     const endDate = job.end?.toLocaleDateString('en-US', dateFormat) ?? 'Present'
+    const experiencePath = experience.experienceQuery ? `/experience/query?query=${encodeURIComponent(experience.experienceQuery)}` : '/experience/query'
 
     return (
         <Card>
@@ -75,7 +77,7 @@ const ExperienceCard = ({ job, experience, tech }: ExperienceCardProps) => {
             </CardContent>
             <CardFooter className="justify-end space-x-1">
                 <div className="rounded-md gradient-border">
-                    <Link href="/experience/query">
+                    <Link href={experiencePath}>
                         <Button variant="ghost" size="sm" className="rounded-[calc(var(--radius-md)-1px)]">
                             Get More Details
                             <BotMessageSquareIcon />

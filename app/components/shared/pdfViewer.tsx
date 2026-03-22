@@ -1,11 +1,11 @@
 'use client'
 
-import { ArrowLeftIcon, ArrowRightIcon, ExternalLink } from 'lucide-react';
+import { ArrowLeftIcon, ArrowRightIcon, ExternalLink, Loader } from 'lucide-react';
 import { useState, useRef, useEffect, ComponentType } from 'react';
 import type { DocumentProps, PageProps } from 'react-pdf';
 import { Button } from "@/components/ui/button"
 import { ButtonGroup } from "@/components/ui/button-group"
-import { Skeleton } from "@/components/ui/skeleton"
+import { Progress } from "@/components/ui/progress"
 import Link from 'next/link';
 
 interface PDFViewerProps {
@@ -23,6 +23,7 @@ const PDFViewer = ({ source }: PDFViewerProps) => {
     const [pageNumber, setPageNumber] = useState<number>(1);
     const [containerWidth, setContainerWidth] = useState<number>(0);
     const [isPageLoading, setIsPageLoading] = useState(true);
+    const [docProgress, setDocProgress] = useState<number>(0);
     const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -46,6 +47,7 @@ const PDFViewer = ({ source }: PDFViewerProps) => {
 
     function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
         setNumPages(numPages);
+        setDocProgress(100);
     }
 
     function goToPage(next: number) {
@@ -53,6 +55,8 @@ const PDFViewer = ({ source }: PDFViewerProps) => {
         setPageNumber(next);
     }
 
+    const isLoading = !pdf || isPageLoading;
+    const showDeterminate = docProgress > 0 && docProgress < 100;
     const pageWidth = containerWidth || undefined;
     const prevPage = pageNumber - 1;
     const nextPage = pageNumber + 1;
@@ -60,38 +64,40 @@ const PDFViewer = ({ source }: PDFViewerProps) => {
     return (
         <div className="flex w-full">
             <div ref={containerRef} className="w-full overflow-hidden space-y-1.5">
-                {!pdf ? (
-                    <Skeleton style={{ height: containerWidth ? containerWidth * 1.414 : 600 }} />
-                ) : (
-                    <pdf.Document file={source} onLoadSuccess={onDocumentLoadSuccess}>
-                        <div className="relative">
-                            {isPageLoading && (
-                                <Skeleton
-                                    className="absolute inset-0 z-10"
-                                    style={{ height: containerWidth ? containerWidth * 1.414 : 600 }}
-                                />
-                            )}
+                {(!pdf || showDeterminate || isLoading) && (
+                    <Progress
+                        value={showDeterminate ? docProgress : 0}
+                        className="h-1 w-9/10 rounded-none my-4 mx-auto"
+                    />
+                )}
+                <div className="relative w-full overflow-hidden rounded-t-xl">
+                    {pdf && (
+                        <pdf.Document
+                            file={source}
+                            onLoadSuccess={onDocumentLoadSuccess}
+                            onLoadProgress={({ loaded, total }) => setDocProgress(Math.round(loaded / total * 100))}
+                            loading={null}
+                        >
                             <pdf.Page
                                 pageNumber={pageNumber}
                                 width={pageWidth}
                                 onRenderSuccess={() => setIsPageLoading(false)}
                             />
-                        </div>
+                            {prevPage >= 1 && (
+                                <div className="hidden">
+                                    <pdf.Page pageNumber={prevPage} width={pageWidth} />
+                                </div>
+                            )}
+                            {nextPage <= numPages && (
+                                <div className="hidden">
+                                    <pdf.Page pageNumber={nextPage} width={pageWidth} />
+                                </div>
+                            )}
+                        </pdf.Document>
+                    )}
+                </div>
 
-                        {prevPage >= 1 && (
-                            <div className="hidden">
-                                <pdf.Page pageNumber={prevPage} width={pageWidth} />
-                            </div>
-                        )}
-                        {nextPage <= numPages && (
-                            <div className="hidden">
-                                <pdf.Page pageNumber={nextPage} width={pageWidth} />
-                            </div>
-                        )}
-                    </pdf.Document>
-                )}
-
-                <div className="flex justify-between">
+                <div className="flex justify-between px-4 pb-1.5">
                     <ButtonGroup>
                         <ButtonGroup>
                             <Button
@@ -100,7 +106,7 @@ const PDFViewer = ({ source }: PDFViewerProps) => {
                                 <ArrowLeftIcon />
                             </Button>
                             <Button variant="outline" disabled>
-                                {pageNumber}/{numPages}
+                                {!isLoading ? <>{pageNumber} / {numPages}</> : <Loader className="animate-spin" />}
                             </Button>
                             <Button
                                 variant="outline"

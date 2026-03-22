@@ -55,23 +55,25 @@ const Query = () => {
         <>
             <ConversationHistory conversationHistory={conversation} />
             <div className="pb-2 md:pb-10 px-2 self-center w-full max-w-2xl">
-                <Card>
-                    <CardHeader>
-                        <CardDescription>Ask an LLM about my professional experience.</CardDescription>
-                        <form onSubmit={(e) => { e.preventDefault(); onSubmitHandler() }}>
-                            <ButtonGroup className="w-full">
-                                <Input placeholder="" value={query} onChange={(e) => setQuery(e.target.value)} />
-                                <Button
-                                    type="submit"
-                                    variant="default"
-                                    disabled={loading || query.length === 0}
-                                >
-                                    {loading ? <Loader className="animate-spin" /> : <SendHorizonal />}
-                                </Button>
-                            </ButtonGroup>
-                        </form>
-                    </CardHeader>
-                </Card>
+                <div className="rounded-xl gradient-border">
+                    <Card className="rounded-xl">
+                        <CardHeader>
+                            <CardDescription>Ask an LLM about my professional experience.</CardDescription>
+                            <form onSubmit={(e) => { e.preventDefault(); onSubmitHandler() }}>
+                                <ButtonGroup className="w-full">
+                                    <Input placeholder="" value={query} onChange={(e) => setQuery(e.target.value)} />
+                                    <Button
+                                        type="submit"
+                                        variant=""
+                                        disabled={loading || query.length === 0}
+                                    >
+                                        {loading ? <Loader className="animate-spin" /> : <SendHorizonal />}
+                                    </Button>
+                                </ButtonGroup>
+                            </form>
+                        </CardHeader>
+                    </Card>
+                </div>
             </div>
         </>
     )

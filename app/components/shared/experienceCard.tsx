@@ -74,18 +74,22 @@ const ExperienceCard = ({ job, experience, tech }: ExperienceCardProps) => {
                 </div>
             </CardContent>
             <CardFooter className="justify-end space-x-1">
-                <Link href="/resume.pdf" target="_blank">
-                    <Button variant="outline" size="sm">
-                        View Full Resume
-                        <Paperclip />
-                    </Button>
-                </Link>
-                <Link href="/experience/query">
-                    <Button variant="ghost" size="sm">
-                        Get More Details
-                        <BotMessageSquareIcon />
-                    </Button>
-                </Link>
+                <div className="rounded-md gradient-border">
+                    <Link href="/experience/query">
+                        <Button variant="ghost" size="sm" className="rounded-[calc(var(--radius-md)-1px)]">
+                            Get More Details
+                            <BotMessageSquareIcon />
+                        </Button>
+                    </Link>
+                </div>
+                <div className="rounded-md p-px">
+                    <Link href="/resume.pdf" target="_blank">
+                        <Button variant="ghost" className="rounded-[calc(var(--radius-md)-1px)]">
+                            View Full Resume
+                            <Paperclip />
+                        </Button>
+                    </Link>
+                </div>
             </CardFooter>
         </Card>
     )

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { ButtonGroup } from "@/components/ui/button-group"
 import { Progress } from "@/components/ui/progress"
 import Link from 'next/link';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface PDFViewerProps {
     source: string
@@ -55,8 +56,9 @@ const PDFViewer = ({ source }: PDFViewerProps) => {
         setPageNumber(next);
     }
 
-    const isLoading = !pdf || isPageLoading;
-    const showDeterminate = docProgress > 0 && docProgress < 100;
+
+    const showDeterminate = docProgress > 0 && docProgress < 100 || docProgress === undefined;
+    const isInitialLoading = (!pdf || showDeterminate)
     const pageWidth = containerWidth || undefined;
     const prevPage = pageNumber - 1;
     const nextPage = pageNumber + 1;
@@ -64,7 +66,7 @@ const PDFViewer = ({ source }: PDFViewerProps) => {
     return (
         <div className="flex w-full">
             <div ref={containerRef} className="w-full overflow-hidden space-y-1.5">
-                {(!pdf || showDeterminate || isLoading) && (
+                {isInitialLoading && (
                     <Progress
                         value={showDeterminate ? docProgress : 0}
                         className="h-1 w-9/10 rounded-none my-4 mx-auto"
@@ -106,7 +108,7 @@ const PDFViewer = ({ source }: PDFViewerProps) => {
                                 <ArrowLeftIcon />
                             </Button>
                             <Button variant="outline" disabled>
-                                {!isLoading ? <>{pageNumber} / {numPages}</> : <Loader className="animate-spin" />}
+                                {!isInitialLoading ? <>{pageNumber} / {numPages}</> : <Loader className="animate-spin" />}
                             </Button>
                             <Button
                                 variant="outline"

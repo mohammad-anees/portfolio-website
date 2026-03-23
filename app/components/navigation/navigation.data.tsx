@@ -1,4 +1,4 @@
-import { Baby, BotMessageSquare, Car, Fuel, X } from "lucide-react";
+import { Baby, BotMessageSquare, Car, Code, Fuel, X } from "lucide-react";
 
 interface Navigation {
     sectionTitle: string,
@@ -10,6 +10,7 @@ interface NavigationConfiguration {
     url: string,
     icon?: React.ReactElement
     active?: boolean
+    newWindow?: boolean
 }
 
 export const navigation: Navigation[] = [
@@ -23,10 +24,11 @@ export const navigation: Navigation[] = [
         ]
     },
     {
-        sectionTitle: "Yusra Mags",
+        sectionTitle: "Special Projects",
         links: [
-            { name: 'Year 1', url: '/yusra-mag/year-one', icon: <Baby /> },
-            { name: 'Year 2', url: '/yusra-mag/year-two', icon: <Baby /> },
+            { name: 'Yusra - Year 1', url: '/yusra-mag/year-one', icon: <Baby /> },
+            { name: 'Yusra - Year 2', url: '/yusra-mag/year-two', icon: <Baby /> },
+            { name: 'Portfolio Source', url: 'https://github.com/mohammad-anees/website-2026', icon: <Code />, newWindow: true }
         ]
-    }
+    },
 ]

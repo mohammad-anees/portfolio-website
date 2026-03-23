@@ -43,6 +43,7 @@ const Query = () => {
 
         } catch (e) {
             conversationItem.state = ConversationItemState.ERROR
+            conversationItem.response = 'Unexpected error, please try again.'
         } finally {
             setLoading(false)
             setConversation(prev => [...prev.slice(0, -1), conversationItem])

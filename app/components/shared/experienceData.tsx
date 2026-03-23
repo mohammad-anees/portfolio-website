@@ -13,7 +13,7 @@ const ExperienceData = ({
     title, summary, bulletedDetails = []
 }: ExperienceDataProps) => {
     return (
-        <div className="mt-1.5">
+        <div className="mt-1.5 px-1.5">
             <h2 className="font-bold">{title}</h2>
             <span className="">
                 {summary}

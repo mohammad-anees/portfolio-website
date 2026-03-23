@@ -45,10 +45,10 @@ const ExperienceCard = ({ job, experience, tech, }: ExperienceCardProps) => {
             <CardHeader>
                 <CardTitle>
                     <h1 className="text-3xl pb-1">{job.companyName}</h1>
-                    <p>{job.title}</p>
+                    <p className="uppercase mt-1 text-gray-300">{job.title}</p>
                 </CardTitle>
                 <CardDescription>
-                    <h1 className="text-md font-bold">{startDate} - {endDate}</h1>
+                    <h1 className="text-md font-bold uppercase">{startDate} - {endDate}</h1>
                 </CardDescription>
                 <CardAction>
                     <Button variant="secondary">
@@ -57,20 +57,19 @@ const ExperienceCard = ({ job, experience, tech, }: ExperienceCardProps) => {
                 </CardAction>
             </CardHeader>
             <Separator />
-
             <CardContent className="space-y-4">
                 <div className="pb-2">
-                    <p className="text-lg">
+                    <p className="text-md font-medium">
                         {experience.summary}
                     </p>
                 </div>
                 <div>
-                    <h1 className="text-xl font-bold">Achievements</h1>
+                    <h1 className="text-xl font-bold uppercase">Achievements</h1>
                     {experience.achievements.map((achievement, index) => <ExperienceData key={index} {...achievement} />)}
                 </div>
                 <div>
-                    <h1 className="text-xl font-bold mb-1.5">Technologies</h1>
-                    <div className="space-x-2 space-y-1">
+                    <h1 className="text-xl font-bold mb-1.5 uppercase">Technologies</h1>
+                    <div className="space-x-2 space-y-1 px-1.5">
                         {tech.technologies.map((technology, index) => <Badge variant={tech.variant} key={index}>{technology}</Badge>)}
                     </div>
                 </div>

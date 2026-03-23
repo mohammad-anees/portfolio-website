@@ -13,10 +13,9 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { Boxes, Code, GitBranchPlus, GithubIcon } from "lucide-react"
+import { Boxes } from "lucide-react"
 import { navigation } from "./navigation.data"
 import { usePathname } from "next/navigation"
-import Link from "next/link";
 
 export function AppSidebar() {
     const pathname = usePathname()
@@ -44,7 +43,7 @@ export function AppSidebar() {
                             {navSection.links.map((link) => (
                                 <SidebarMenuItem key={link.name}>
                                     <SidebarMenuButton asChild isActive={isActivePath(link.url)}>
-                                        <a href={link.url}>
+                                        <a href={link.url} target={link.newWindow ? '_blank' : undefined}>
                                             {link.icon}
                                             <span>{link.name}</span>
                                         </a>

@@ -44,6 +44,7 @@ export const NavBar = () => {
                                     <Link
                                         key={link.name}
                                         href={link.url}
+                                        target={link.newWindow ? '_blank' : undefined}
                                         onClick={() => setOpen(false)}
                                         className={`flex items-center gap-4 px-6 py-4 text-base font-medium transition-colors hover:bg-accent ${pathname === link.url ? 'bg-accent text-accent-foreground' : ''}`}
                                     >

@@ -23,16 +23,15 @@ export function AppSidebar() {
     const isActivePath = (url: string) => (pathname === url)
 
     return (
-        <Sidebar variant="floating">
-            <SidebarHeader className="mt-2">
+        <Sidebar>
+            <SidebarHeader className="py-4 bg-secondary">
                 <SidebarMenu>
                     <SidebarMenuItem>
-                        <div className="flex gap-2 px-2">
+                        <div className="flex gap-2 px-2 text-gray-300">
                             <Boxes />
                             <h1 className="text-md font-bold uppercase">Mohammad Anees</h1>
                         </div>
                     </SidebarMenuItem>
-                    <SidebarMenuItem className="mt-3"><Separator /></SidebarMenuItem>
                 </SidebarMenu>
             </SidebarHeader>
             <SidebarContent>

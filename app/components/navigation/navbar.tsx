@@ -18,7 +18,7 @@ export const NavBar = () => {
     const [open, setOpen] = useState(false)
 
     return (
-        <header className="flex items-center justify-between px-4 py-3 border-b border-border bg-background">
+        <header className="flex items-center justify-between px-4 py-3 border-b border-border bg-secondary">
             <div className="flex items-center gap-2">
                 <Boxes size={22} />
                 <span className="font-bold uppercase tracking-wide text-base">

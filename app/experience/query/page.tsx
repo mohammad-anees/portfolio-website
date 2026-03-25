@@ -8,7 +8,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { ButtonGroup } from "@/components/ui/button-group"
 import { Input } from "@/components/ui/input"
-import { Loader, SendHorizonal } from "lucide-react";
+import { CornerRightUp, Loader } from "lucide-react";
 import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import { ConversationHistory, ConversationItem, ConversationItemState } from "./conversationHistory";
 import { useSearchParams } from "next/navigation";
@@ -71,12 +71,12 @@ const Query = () => {
                             <CardDescription>Ask an LLM about my professional experience.</CardDescription>
                             <form onSubmit={(e) => { e.preventDefault(); onSubmitHandler() }}>
                                 <ButtonGroup className="w-full">
-                                    <Input placeholder="" value={query} onChange={(e) => setQuery(e.target.value)} />
+                                    <Input value={query} onChange={(e) => setQuery(e.target.value)} />
                                     <Button
                                         type="submit"
                                         disabled={loading || query.length === 0}
                                     >
-                                        {loading ? <Loader className="animate-spin" /> : <SendHorizonal />}
+                                        {loading ? <Loader className="animate-spin" /> : <CornerRightUp />}
                                     </Button>
                                 </ButtonGroup>
                             </form>

@@ -98,5 +98,5 @@ button:hover, a:hover {
 }
 
 .gradient-border {
-  @apply p-px bg-gradient-to-r from-blue-500 via-purple-500 via-pink-500 to-green-500;
+  @apply p-px bg-linear-to-r from-yellow-500 via-orange-500 to-pink-500;
 }
